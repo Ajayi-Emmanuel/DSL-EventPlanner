@@ -17,7 +17,7 @@ app.use('/api/events', eventRouter)
 app.use('/api/bookings', bookingRouter)
 
 app.listen(port, async () => {
-    console.log(`Server running on port https://localhost:${port}`);
+    console.log(`Server running on port ${port}`);
 
     await connect() 
   });
