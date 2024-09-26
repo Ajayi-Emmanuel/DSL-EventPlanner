@@ -34,7 +34,7 @@ const eventModel = require('../models/event');
 
 /**
  * @swagger
- * /events/{eventId}:
+ * /api/bookings{eventId}:
  *   post:
  *     summary: Book a spot in an event
  *     tags: [Bookings]

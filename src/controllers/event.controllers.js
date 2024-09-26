@@ -42,7 +42,7 @@ const eventModel = require('../models/event');
 
 /**
  * @swagger
- * /events:
+ * /api/events:
  *   post:
  *     summary: Create a new event
  *     tags: [Events]
@@ -92,7 +92,7 @@ exports.create_event = async (req, res) => {
 
 /**
  * @swagger
- * /events:
+ * /api/events:
  *   get:
  *     summary: Retrieve a list of all events
  *     tags: [Events]
@@ -127,14 +127,7 @@ exports.get_all_events = async (req, res) => {
 
 /**
  * @swagger
- * /events/creator:
- *    parameters:
- *    - in: query
- *      name: id
- *      schema:
- *       type: string
- *      required: true
- *      description: The ID of the event
+ * /api/events/my-events:
  *    get:
  *     summary: Retrieve all events created by the current user
  *     tags: [Events]
@@ -172,7 +165,7 @@ exports.get_all_events_by_creator = async (req, res) => {
 
 /**
  * @swagger
- * /events/{id}:
+ * /api/events/{id}:
  *   get:
  *     summary: Retrieve a single event by its ID
  *     tags: [Events]
@@ -217,7 +210,7 @@ exports.get_event_by_id = async (req, res) => {
 
 /**
  * @swagger
- * /events/{id}:
+ * /api/events/{id}:
  *   put:
  *     summary: Update an event by ID
  *     tags: [Events]
@@ -283,7 +276,7 @@ exports.update_event_by_id = async (req, res) => {
 
 /**
  * @swagger
- * /events/{id}:
+ * /api/events/{id}:
  *   delete:
  *     summary: Delete an event by ID
  *     tags: [Events]

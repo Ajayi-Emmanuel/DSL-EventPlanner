@@ -31,7 +31,7 @@ const jwt = require('jsonwebtoken');
 
 /**
  * @swagger
- * /register:
+ * /api/auth/register:
  *   post:
  *     summary: Register a new user
  *     tags: [Users]
@@ -123,7 +123,7 @@ exports.register_user = async (req, res) => {
 
 /**
  * @swagger
- * /login:
+ * /api/auth/login:
  *   post:
  *     summary: Login a user
  *     tags: [Users]
