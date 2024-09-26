@@ -1,5 +1,4 @@
-const express = require('express');
-const eventRouter = express.Router();
+const eventRouter = require('express').Router()
 const eventController = require("../controllers/event.controllers")
 const auth = require('../middleware/auth');
 
@@ -10,6 +9,7 @@ eventRouter.post('/', auth, eventController.create_event)
 eventRouter.get('/', eventController.get_all_events);
 
 // Get all events posted by a user
+eventRouter.get('/my-events', auth, eventController.get_all_events_by_creator);
 
 // Get Single Event by ID
 eventRouter.get('/:id', eventController.get_event_by_id);
