@@ -10,7 +10,10 @@ authRouter.post('/register', async (req, res) => {
 
   try {
     let user = await User.findOne({ email });
-    if (user) return res.status(400).json({ msg: 'User already exists' });
+    if (user) return res.status(400).json({ 
+      message: 'User already exists',
+      isSuccess: false
+    });
 
     user = new User({ name, email, password });
     await user.save();
@@ -18,9 +21,15 @@ authRouter.post('/register', async (req, res) => {
     const payload = { user: { id: user.id } };
     const token = jwt.sign(payload, 'secretkey', { expiresIn: '1h' });
 
-    res.json({ token });
+    res.status(200).json({ 
+      message: "User registered successfully",
+      isSuccess: true
+    });
   } catch (err) {
-    res.status(500).send('Server error'); 
+    res.status(500).json({
+      message: "Server Error",
+      isSuccess: false
+    })
   }
 });
 
@@ -30,17 +39,29 @@ authRouter.post('/login', async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ msg: 'Invalid Credentials' });
+    if (!user) return res.status(400).json({ 
+      message: 'Invalid Credentials',
+      isSuccess: false
+    });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: 'Invalid Credentials' });
+    if (!isMatch) return res.status(400).json({ 
+      message: 'Invalid Credentials',
+      isSuccess: false
+    });
 
     const payload = { user: { id: user.id } };
     const token = jwt.sign(payload, 'secretkey', { expiresIn: '1h' });
 
-    res.json({ token });
+    res.status(200).json({
+      message: "Login Successful",
+      isSuccess: true
+    })
   } catch (err) {
-    res.status(500).send('Server error');
+    res.status(500).json({
+      message: "Server Error",
+      isSuccess: false
+    })
   }
 });
 
